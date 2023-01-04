@@ -10,15 +10,15 @@
 
   This project will provide relevant book data and dynamic plots that will help publishers better understand the pricing trends in their specific market segments, taking into account format variations, page counts, and book categorization.
 
-    •	Drop Down Menus for Book Category; Format; Page Count selection filtering
+•	Drop Down Menus for Book Category; Format; Page Count selection filtering
 
-    •	Slider to determine count of bins displayed
+•	Slider to determine count of bins displayed
 
-    •	Dynamic histogram displaying distribution of List Prices across full dataset with        applied input filters
+•	Dynamic histogram displaying distribution of List Prices across full dataset with applied input filters
 
-    •	Dynamic area chart that shows Top BISAC subcategory share for each Macro-Category        selected
+•	Dynamic area chart that shows Top BISAC subcategory share for each Macro-Category selected
 
-    •	Mean and Median statistics displayed for interpreting takeaways and pricing action       in product comparison
+•	Mean and Median statistics displayed for interpreting takeaways and pricing action in product comparison
 
   Because the market is always changing and pricing strategies can vary greatly for front list/backlist product offerings, the data will be limited to newly published titles with publication dates limited to 2022 and eliminate any titles that did not have >= 3 sales in the market, YTD.
 

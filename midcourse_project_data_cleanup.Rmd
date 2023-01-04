@@ -1,0 +1,34 @@
+---
+title: "Midcourse Project Data Cleanup"
+output: html_document
+date: "2023-01-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(readr)
+```
+
+
+```{r}
+prices <- read_csv("Data/2022_pub_dates_1_03_2023.csv")
+prices <- prices %>% 
+  rename(List_Price_Value = 'List Price Value')
+```
+
+
+```{r}
+prices$List_Price_Value <- as.numeric(sub("\\$", "", prices$List_Price_Value))
+prices <- prices %>% 
+  filter(Pages != "Not Specified")
+prices$Pages <- as.numeric(prices$Pages)
+```
+
+```{r}
+prices
+```

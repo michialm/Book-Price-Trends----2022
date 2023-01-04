@@ -36,3 +36,9 @@ prices %>%
   filter(Format == 'Trade Paperback' & Subcategory == 'HISTORY - ANF') %>% 
   ggplot(aes(x = List_Price_Value, color = Subcategory)) + geom_histogram(bins = 100)
 ```
+```{r}
+prices %>% 
+  filter(Format == 'Trade Paperback' & Subcategory == 'HISTORY - ANF') %>% 
+  ggplot(aes(area = Sales_2022, label = BISAC_Level_1, subgroup = BISAC_Level_1, layout = 'squarified')) + geom_treemap()
+```
+

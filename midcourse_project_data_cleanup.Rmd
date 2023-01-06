@@ -31,10 +31,98 @@ prices <- prices %>%
 prices$Pages <- as.numeric(prices$Pages)
 ```
 
+```{r}
+prices <- prices %>%
+  mutate(group = 
+           case_when(
+             Pages > 0 & Pages <= 20 ~ "0 - 20",
+             Pages > 20 & Pages <= 30 ~ "21 - 30",
+             Pages > 30 & Pages <= 40 ~ "31 - 40",
+             Pages > 40 & Pages <= 50 ~ "41 - 50",
+             Pages > 50 & Pages <= 60 ~ "51 - 60",
+             Pages > 60 & Pages <= 70 ~ "61 - 70",
+             Pages > 70 & Pages <= 80 ~ "71 - 80",
+             Pages > 80 & Pages <= 90 ~ "81 - 90",
+             Pages > 90 & Pages <= 100 ~ "91 - 100",
+             Pages > 100 & Pages <= 110 ~ "101 - 110",
+             Pages > 110 & Pages <= 120 ~ "111 - 120",
+             Pages > 120 & Pages <= 130 ~ "121 - 130",
+             Pages > 130 & Pages <= 140 ~ "131 - 140",
+             Pages > 140 & Pages <= 150 ~ "141 - 150",
+             Pages > 150 & Pages <= 160 ~ "151 - 160",
+             Pages > 160 & Pages <= 170 ~ "161 - 170",
+             Pages > 170 & Pages <= 180 ~ "171 - 180",
+             Pages > 180 & Pages <= 190 ~ "181 - 190",
+             Pages > 190 & Pages <= 200 ~ "191 - 200",
+             Pages > 200 & Pages <= 220 ~ "201 - 220",
+             Pages > 220 & Pages <= 240 ~ "221 - 240",
+             Pages > 240 & Pages <= 260 ~ "241 - 260",
+             Pages > 260 & Pages <= 280 ~ "261 - 280",
+             Pages > 280 & Pages <= 300 ~ "281 - 300",
+             Pages > 300 & Pages <= 320 ~ "301 - 320",
+             Pages > 320 & Pages <= 340 ~ "321 - 340",
+             Pages > 340 & Pages <= 360 ~ "341 - 360",
+             Pages > 360 & Pages <= 380 ~ "361 - 380",
+             Pages > 380 & Pages <= 400 ~ "381 - 400",
+             Pages > 400 & Pages <= 420 ~ "401 - 420",
+             Pages > 420 & Pages <= 440 ~ "421 - 440",
+             Pages > 440 & Pages <= 460 ~ "441 - 460",
+             Pages > 460 & Pages <= 480 ~ "461 - 480",
+             Pages > 480 & Pages <= 500 ~ "481 - 500",
+             Pages > 500 & Pages <= 520 ~ "501 - 520",
+             Pages > 520 & Pages <= 540 ~ "521 - 540",
+             Pages > 540 & Pages <= 560 ~ "541 - 560",
+             Pages > 560 & Pages <= 580 ~ "561 - 580",
+             Pages > 580 & Pages <= 600 ~ "581 - 600",
+             Pages > 600 & Pages <= 620 ~ "601 - 620",
+             Pages > 620 & Pages <= 640 ~ "621 - 640",
+             Pages > 640 & Pages <= 660 ~ "641 - 660",
+             Pages > 660 & Pages <= 680 ~ "661 - 680",
+             Pages > 680 & Pages <= 700 ~ "681 - 700",
+             Pages > 700 & Pages <= 720 ~ "701 - 720",
+             Pages > 720 & Pages <= 740 ~ "721 - 740",
+             Pages > 740 & Pages <= 760 ~ "741 - 760",
+             Pages > 760 & Pages <= 780 ~ "761 - 780",
+             Pages > 780 & Pages <= 800 ~ "781 - 800",
+             Pages > 800 & Pages <= 820 ~ "801 - 820",
+             Pages > 820 & Pages <= 840 ~ "821 - 840",
+             Pages > 840 & Pages <= 860 ~ "841 - 860",
+             Pages > 860 & Pages <= 880 ~ "861 - 880",
+             Pages > 880 & Pages <= 900 ~ "881 - 900",
+             Pages > 900 & Pages <= 920 ~ "901 - 920",
+             Pages > 920 & Pages <= 940 ~ "921 - 940",
+             Pages > 940 & Pages <= 960 ~ "941 - 960",
+             Pages > 960 & Pages <= 980 ~ "961 - 980",
+             Pages > 980 & Pages <= 1000 ~ "981 - 1000",
+             Pages > 1000 & Pages <= 1020 ~ "1001 - 1020",
+             Pages > 1020 & Pages <= 1040 ~ "1021 - 1040",
+             Pages > 1040 & Pages <= 1060 ~ "1041 - 1060",
+             Pages > 1060 & Pages <= 10800 ~ "1061 - 1080",
+             Pages > 1080 & Pages <= 1100 ~ "1081 - 1100",
+             Pages > 1100 & Pages <= 1120 ~ "1101 - 1120",
+             Pages > 1120 & Pages <= 1140 ~ "1121 - 1140",
+             Pages > 1140 & Pages <= 1160 ~ "1141 - 1160",
+             Pages > 1160 & Pages <= 1180 ~ "1161 - 1180",
+             Pages > 1180 & Pages <= 1200 ~ "1181 - 1200",
+             Pages > 1200 & Pages <= 1220 ~ "1201 - 1220",
+             Pages > 1220 & Pages <= 1240 ~ "1221 - 1240",
+             Pages > 1240 & Pages <= 1260 ~ "1241 - 1260",
+             Pages > 1260 & Pages <= 1280 ~ "1261 - 1280",
+             Pages > 1280 & Pages <= 1300 ~ "1281 - 1300",
+             Pages > 1300 & Pages <= 1320 ~ "1301 - 1320",
+             Pages > 1320 & Pages <= 1340 ~ "1321 - 1340",
+             Pages > 1340 & Pages <= 1360 ~ "1341 - 1360",
+             Pages > 1360 & Pages <= 1380 ~ "1361 - 1380",
+             Pages > 1380 & Pages <= 1400 ~ "1380 - 1400",
+             TRUE ~ "other"
+    )
+  )
+```
+
 
 ```{r}
 p <- prices %>% 
-  filter(Format == 'Hardcover' & Subcategory == 'SOCIAL SCIENCE - ANF')
+  filter(Format == 'Trade Paperback' & Subcategory == 'SOCIAL SCIENCE - ANF')
 
 p %>% 
     ggplot(aes(x = List_Price_Value)) + 
@@ -45,7 +133,7 @@ p %>%
              lwd = 2) + 
     annotate("text",
            x = median(p$List_Price_Value, na.rm = TRUE) * 1.9,
-           y = median(p$List_Price_Value, na.rm = TRUE) * 1.9,
+           y = median(p$List_Price_Value, na.rm = TRUE) * 6,
            label = paste("Median =", median(p$List_Price_Value, na.rm = TRUE)),
            color = "red",
            size = 5) +

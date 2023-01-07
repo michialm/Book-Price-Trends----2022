@@ -17,6 +17,8 @@ library(ggplot2)
 library(treemapify)
 library(grid)
 ```
+
+#read in Rdata File "prices"
 ```{r}
 prices <- readRDS("prices.RData")
 ```
@@ -24,12 +26,15 @@ prices <- readRDS("prices.RData")
 #ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
 ```{r}
 p <- prices %>% 
-  filter(Format == 'Hardcover' & 
+  filter(Format == 'Trade Paperback' & 
            BISAC_Level_1 == 'HISTORY' & 
-           page_count_bucket == '351 - 400')
+           page_count_bucket == '251 - 300')
 
-bins <- 20
-median <- median(p$List_Price_Value, na.rm = TRUE)
+bins <- 50
+median <- median(p$List_Price_Value, na.rm = TRUE) %>% 
+  format(round(2), nsmall = 2)
+
+median
 
 price_plot <- p %>% 
     ggplot(aes(x = List_Price_Value)) + 

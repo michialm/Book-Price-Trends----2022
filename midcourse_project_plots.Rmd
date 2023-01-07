@@ -1,0 +1,55 @@
+---
+title: "Plots for Midcourse Project"
+output: html_document
+date: "2023-01-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars}
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(treemapify)
+library(grid)
+```
+```{r}
+prices <- readRDS("prices.RData")
+```
+
+```{r}
+p <- prices %>% 
+  filter(Format == 'Hardcover' & 
+           Subcategory == 'BIOGRAPHIES/AUTOBIOGRAPHIES - ANF' & 
+           page_count_bucket == '351 - 400')
+
+bins <- 20
+median <- median(p$List_Price_Value, na.rm = TRUE)
+
+price_plot <- p %>% 
+    ggplot(aes(x = List_Price_Value)) + 
+    geom_histogram(color = 1, fill = 'skyblue', bins = bins) + 
+    geom_vline(xintercept = median(p$List_Price_Value, na.rm = TRUE), 
+             linetype="dotted", 
+             color = 'red',
+             lwd = 1) +
+    coord_cartesian(expand = TRUE, clip = 'off') +
+    scale_x_continuous(breaks = seq(0,1000, by = 10))
+
+xlim <- layer_scales(price_plot)$x$range$range
+ylim <- layer_scales(price_plot)$y$range$range
+
+price_plot + 
+  annotate("text",
+             x = xlim[2] /2 + 2,
+             y = ylim[2] /2 + 5,
+             label = paste("Median (---) = $", median),
+             color = "red",
+             size = 4) +
+      labs(x = 'List Price ($)', y = 'Frequency') +
+      labs(title = "List Price Distribution")
+```
+

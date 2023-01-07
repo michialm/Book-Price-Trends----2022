@@ -58,19 +58,27 @@ price_plot +
              size = 4) +
       labs(x = 'List Price ($)', y = 'Frequency') +
       labs(title = "2022 List Price Frequency Distribution") +
-      labs(caption = "Data: lim. 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
+      labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
 ```
 #Bar Plot to visualize share of Level 2 categorization within Level 1 by frequency
 ```{r}
-q <- prices %>% 
-  filter(Format == 'Hardcover' & 
-           Subcategory == 'HISTORY') %>% 
-  group_by('BISAC_Level_2') %>%
-  slice_max(order_by = Sales_2022, n = 10)
+p2 <- prices %>% 
+  filter(Format == 'Hardcover' & BISAC_Level_1 == 'FICTION') %>% 
+  group_by(BISAC_Level_2, BISAC_Level_1) %>% 
+  mutate(count=n()) #%>% 
+  # order() %>% 
+  # select(BISAC_Level_1, BISAC_Level_2, count) %>% 
+  # # distinct()
+  
+  
 
-q
+p2 
+
+<- q[1:10, ]
+
+q                                                                                                                                                                        
 cat_plot <- q %>% 
-  ggplot(aes(y = BISAC_Level_1, fill = BISAC_Level_2)) +
+  ggplot(aes(y = BISAC_Level_2, fill = n)) +
   geom_bar(position = 'fill')
 
 cat_plot

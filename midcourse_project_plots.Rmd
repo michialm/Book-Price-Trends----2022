@@ -8,6 +8,7 @@ date: "2023-01-07"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Add required Libraries
 ```{r cars}
 library(dplyr)
 library(tidyr)
@@ -20,10 +21,11 @@ library(grid)
 prices <- readRDS("prices.RData")
 ```
 
+#ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
 ```{r}
 p <- prices %>% 
   filter(Format == 'Hardcover' & 
-           Subcategory == 'BIOGRAPHIES/AUTOBIOGRAPHIES - ANF' & 
+           BISAC_Level_1 == 'HISTORY' & 
            page_count_bucket == '351 - 400')
 
 bins <- 20
@@ -50,6 +52,22 @@ price_plot +
              color = "red",
              size = 4) +
       labs(x = 'List Price ($)', y = 'Frequency') +
-      labs(title = "List Price Distribution")
+      labs(title = "2022 List Price Frequency Distribution") +
+      labs(caption = "Data: lim. 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
+```
+#Bar Plot to visualize share of Level 2 categorization within Level 1 by frequency
+```{r}
+q <- prices %>% 
+  filter(Format == 'Hardcover' & 
+           Subcategory == 'HISTORY') %>% 
+  group_by('BISAC_Level_2') %>%
+  slice_max(order_by = Sales_2022, n = 10)
+
+q
+cat_plot <- q %>% 
+  ggplot(aes(y = BISAC_Level_1, fill = BISAC_Level_2)) +
+  geom_bar(position = 'fill')
+
+cat_plot
 ```
 

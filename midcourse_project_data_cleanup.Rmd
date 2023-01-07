@@ -1,5 +1,5 @@
 ---
-title: "Midcourse Project Data Cleanup and Plots"
+title: "Midcourse Project Data Cleanup"
 output: html_document
 date: "2023-01-04"
 ---

@@ -26,7 +26,7 @@ prices <- readRDS("prices.RData")
 #ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
 ```{r}
 format <- 'Trade Paperback'
-level_1 <- 'FICTION'
+level_1 <- 'SOCIAL SCIENCE'
 pcb <- '251 - 300'
 bins <- 50
 
@@ -83,29 +83,5 @@ p3 %>%
   labs(title = "Top 10 BISAC Level 2 Categories by Title Count") +
   labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
   labs(fill = "BISAC Level 2")
-```
-
-
-```{r}
-p2 <- prices %>% 
-  filter(Format == 'Hardcover' & BISAC_Level_1 == 'FICTION') %>% 
-  group_by(BISAC_Level_2, BISAC_Level_1) %>% 
-  mutate(count=n()) #%>% 
-  # order() %>% 
-  # select(BISAC_Level_1, BISAC_Level_2, count) %>% 
-  # # distinct()
-  
-  
-
-p2 
-
-<- q[1:10, ]
-
-q                                                                                                                                                                        
-cat_plot <- q %>% 
-  ggplot(aes(y = BISAC_Level_2, fill = n)) +
-  geom_bar(position = 'fill')
-
-cat_plot
 ```
 

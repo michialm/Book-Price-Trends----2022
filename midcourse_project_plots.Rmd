@@ -25,12 +25,17 @@ prices <- readRDS("prices.RData")
 
 #ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
 ```{r}
-p <- prices %>% 
-  filter(Format == 'Trade Paperback' & 
-           BISAC_Level_1 == 'HISTORY' & 
-           page_count_bucket == '251 - 300')
-
+format <- 'Trade Paperback'
+level_1 <- 'FICTION'
+pcb <- '251 - 300'
 bins <- 50
+
+
+p <- prices %>% 
+  filter(Format == format & 
+           BISAC_Level_1 == level_1 & 
+           page_count_bucket == pcb)
+
 median <- median(p$List_Price_Value, na.rm = TRUE) %>% 
   format(round(2), nsmall = 2)
 
@@ -61,6 +66,26 @@ price_plot +
       labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
 ```
 #Bar Plot to visualize share of Level 2 categorization within Level 1 by frequency
+
+```{r}
+p2 <- prices %>% 
+  filter(Format == format & BISAC_Level_1 == level_1) %>%
+    group_by(BISAC_Level_1, BISAC_Level_2) %>% 
+    summarize(count = n()) %>% 
+    arrange(desc(count))
+  
+p3 <- p2[1:10, ] 
+  
+p3 %>%   
+  ggplot(aes(x = BISAC_Level_1, y = count, fill = BISAC_Level_2)) +
+  geom_bar(stat = "identity") +
+  labs(x = "BISAC Level 1", y = "Top 10 Frequency") +
+  labs(title = "Top 10 BISAC Level 2 Categories by Title Count") +
+  labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
+  labs(fill = "BISAC Level 2")
+```
+
+
 ```{r}
 p2 <- prices %>% 
   filter(Format == 'Hardcover' & BISAC_Level_1 == 'FICTION') %>% 

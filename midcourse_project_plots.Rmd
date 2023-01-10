@@ -27,7 +27,7 @@ prices <- readRDS("prices.RData")
 ```{r}
 format <- 'Trade Paperback'
 level_1 <- 'SOCIAL SCIENCE'
-pcb <- '251 - 300'
+pcb <- '351 - 400'
 bins <- 50
 
 
@@ -71,13 +71,14 @@ price_plot +
 p2 <- prices %>% 
   filter(Format == format & BISAC_Level_1 == level_1) %>%
     group_by(BISAC_Level_1, BISAC_Level_2) %>% 
-    summarize(count = n()) %>% 
+    summarize(count = n()) %>%
     arrange(desc(count))
   
-p3 <- p2[1:10, ] 
+p3 <- p2[1:10, ] %>% 
+  mutate(relative_frequency = count/sum(count))
   
 p3 %>%   
-  ggplot(aes(x = BISAC_Level_1, y = count, fill = BISAC_Level_2)) +
+  ggplot(aes(x = BISAC_Level_1, y = relative_frequency, fill = BISAC_Level_2)) +
   geom_bar(stat = "identity") +
   labs(x = "BISAC Level 1", y = "Top 10 Frequency") +
   labs(title = "Top 10 BISAC Level 2 Categories by Title Count") +

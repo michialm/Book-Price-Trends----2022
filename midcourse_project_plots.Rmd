@@ -43,7 +43,7 @@ median <- median(p$List_Price_Value, na.rm = TRUE) %>%
 
 price_plot <- p %>% 
     ggplot(aes(x = List_Price_Value)) + 
-    geom_histogram(color = 1, fill = 'skyblue', bins = bins) + 
+    geom_histogram(color = 1,  fill = 'skyblue', bins = bins) + 
     geom_vline(xintercept = median(p$List_Price_Value, na.rm = TRUE), 
              linetype="dotted", 
              color = 'red',
@@ -78,8 +78,8 @@ p3 <- p2[1:10, ] %>%
   mutate(relative_frequency = count/sum(count))
   
 p3 %>%   
-  ggplot(aes(x = BISAC_Level_2, y = relative_frequency, fill = 'skyblue')) +
-  geom_bar(stat = "identity") +
+  ggplot(aes(x = BISAC_Level_2, y = relative_frequency)) +
+  geom_bar(stat = "identity", color = 1, fill = 'skyblue') +
   labs(x = "Category", y = "Top 10 Frequency") +
   labs(title = "Frequency of Top 10 Subcategories by Title Count") +
   labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
@@ -101,8 +101,8 @@ p5 <- p4[1:20, ]
 
 p5 %>% 
   ggplot(aes(x = sales_per_title, 
-             y = reorder(BISAC_Level_2, sales_per_title), fill = 'skyblue')) +
-  geom_col() +
+             y = reorder(BISAC_Level_2, sales_per_title))) +
+  geom_col(color = 1, fill = 'skyblue') +
   labs(x = "Sales per Title", y = "Category") +
   labs(title = "Top 20 Subcategories -- Sales per Title") +
   labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +

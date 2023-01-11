@@ -22,14 +22,17 @@ library(grid)
 prices <- readRDS("prices.RData")
 ```
 
-#ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
+#Filter by Title Specs
 ```{r}
 format <- 'Hardcover'
 category <- 'JUVENILE FICTION'
 pcb <- '51 - 100'
 bins <- 30
+```
 
 
+#ggplot dynamic histogram of distribution of List Price frequencies within given Format, Category, and Page Count filters -- annotations dynamic within given xlim params
+```{r}
 p <- prices %>% 
   filter(Format == format & 
            BISAC_Level_1 == category & 

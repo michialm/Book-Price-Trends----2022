@@ -62,8 +62,8 @@ price_plot +
       labs(title = "2022 List Price Frequency Distribution") +
       labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
 ```
-#Bar Plot to visualize share of Level 2 categorization within Level 1 by frequency
 
+#Bar Plot to visualize share of Level 2 categorization within Level 1 by frequency
 ```{r}
 p2 <- prices %>% 
   filter(Format == format & BISAC_Level_1 == category) %>%
@@ -83,6 +83,9 @@ p3 %>%
   labs(legend.position = 'none') +
   guides(x = guide_axis(angle = -45))
 ```
+
+
+#Horizontal Bar Plot to Show Top 20 Categories by Sales per Title metric
 ```{r}
 p4 <- prices %>% 
         filter(Format == format & BISAC_Level_1 == category) %>%

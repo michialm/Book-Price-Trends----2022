@@ -25,6 +25,7 @@ library(stringr)
 prices <- read_csv("2022_pub_dates_1_04_2023.csv")
 prices <- prices %>% 
   rename(List_Price_Value = 'List Price Value')
+prices
 ```
 
 #Cleanup Dataset with DPLYR
@@ -36,6 +37,8 @@ prices$Pages <- as.numeric(prices$Pages)
 prices[c('old', 'BISAC_Level_2')] <- 
   str_split_fixed(prices$BISAC_Level_2, ' / ', 2)
 prices <- select(prices, -c("old"))
+
+prices
 ```
 
 #Setup Page Count Buckets using case_when mutate function
@@ -70,7 +73,7 @@ prices <- prices %>%
              Pages > 1200 & Pages <= 1250 ~ "1201 - 1250",
              Pages > 1250 & Pages <= 1300 ~ "1251 - 1300",
              TRUE ~ "1300+"
-    )
+           )
   )
 ```
 

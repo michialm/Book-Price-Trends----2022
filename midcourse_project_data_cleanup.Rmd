@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Add Libraries
 ```{r}
+library(ggridges)
 library(dplyr)
 library(tidyr)
 library(readr)
@@ -72,6 +73,7 @@ prices <- prices %>%
     )
   )
 ```
+
 
 #Save wrangled data into RData file
 ```{r}

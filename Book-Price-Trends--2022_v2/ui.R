@@ -12,9 +12,9 @@ dashboardPage(
   dashboardSidebar(
     
     selectInput("Category", label = h5("Category"), 
-                               choices = category_list, 
-                               selected = "JUVENILE FICTION"),
-                   hr(),
+                choices = category_list, 
+                selected = "JUVENILE FICTION"),
+    hr(),
     selectInput("page_count_bucket", label = h5("Page Count"),
                 choices = list("0 - 50" = "0 - 50",
                                "51 - 100" = "51 - 100",
@@ -62,10 +62,10 @@ dashboardPage(
   ),
   dashboardBody(
     fluidRow(
-    column(12,
-           box(
-             plotOutput("priceplot")
-        )
+      column(12,
+             box(
+               plotOutput("priceplot")
+             )
       )
     ),
     
@@ -76,7 +76,7 @@ dashboardPage(
                     box(
                       plotOutput("opportunityplot")
                     )
-      )
+    )
     )
   )
 )

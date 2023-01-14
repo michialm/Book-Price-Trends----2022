@@ -93,4 +93,4 @@ function(input, output) {
       theme(legend.position='none')
   })
   
-  }
+}

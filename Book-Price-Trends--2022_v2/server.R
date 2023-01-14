@@ -66,7 +66,7 @@ function(input, output) {
       ggplot(aes(x = reorder(BISAC_Level_2, -relative_frequency), y = relative_frequency)) +
       geom_bar(stat = "identity", color = 1, fill = 'skyblue') +
       labs(x = "Category", y = "Top 10 Frequency") +
-      labs(title = "Frequency of Top 10 Subcategories by Title Count") +
+      labs(title = "Top 10 Subcategories by Title Count") +
       labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
       labs(legend.position = 'none') +
       guides(x = guide_axis(angle = -45))

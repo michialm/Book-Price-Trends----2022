@@ -69,7 +69,7 @@ function(input, output) {
       labs(title = "Top 10 Subcategories by Title Count") +
       labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
       labs(legend.position = 'none') +
-      guides(x = guide_axis(angle = -45))
+      guides(x = guide_axis(angle = -65))
   })
   
   output$opportunityplot <- renderPlot({

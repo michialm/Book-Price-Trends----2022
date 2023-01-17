@@ -1,28 +1,25 @@
-# Book-Price-Trends----2022
+# Book-Pricing----2022
 
 # Executive Summary
 
   As prices change and vary greatly in the market, due to inflation, war, and greater market uncertainties, it can be difficult for business to know how to best price their products to be competitive in market segments. For book publishing, this is no different – the costs of supply chain, manufacturing, marketing campaigns, author royalties and stocked inventory must all factor in to the List Price of a title.
 
 
-  So how do Publishers best price their titles to be competitive?
+  So how can Publishers best price their titles to be competitive?
 
 
-  This project will provide relevant book data and dynamic plots that will help publishers better understand the pricing trends in their specific market segments, taking into account format variations, page counts, and book categorization.
+  This project will provide relevant book data and dynamic plots that will help publishers better understand the trends in their specific market segments, taking into account format variations, page counts, and book categorization.
 
 •	Drop Down Menus for Book Category; Format; Page Count selection filtering
 
 •	Slider to determine count of bins displayed
 
-•	Dynamic histogram displaying distribution of List Prices across full dataset with applied input filters
+•	Dynamic histogram displaying distribution of List Prices across full dataset with applied input filters -- Median values displayed
 
-•	Dynamic area chart that shows Top BISAC subcategory share for each Macro-Category selected
-
-•	Mean and Median statistics displayed for interpreting takeaways and pricing action in product comparison
-
-  Because the market is always changing and pricing strategies can vary greatly for front list/backlist product offerings, the data will be limited to newly published titles with publication dates limited to 2022 and eliminate any titles that did not have >= 3 sales in the market, YTD.
+•	Dynamic bar charts that show Top BISAC Subcategory share for each Category selected and Top Categories by Sales-per-Title metrics.
 
 
+  Because the market is always changing and pricing strategies can vary greatly for front list/backlist product offerings, the data will be limited to newly published titles with publication dates limited to 2022 and the data is limited to titles with  >= 3 sales in the market in 2022.
 
 
 
@@ -30,22 +27,24 @@
 
   My motivation for this project centers around providing relevant trends in book data for publisher clients. 
 
-  With so much pricing fluctuation this year, the question, “How do I price my book,” is one I often receive – unfortunately, I am unable to suggest list prices, as this would be outside legal bounds of doing business. 
-How can I help my clients without breaking the law and running the risk of “price fixing” through a list price suggestion?
+  With so much pricing fluctuation in the past year, the question, “How do I price my book,” is one I often receive – as a representative of a book wholesaler/distributor, I am legally prohibited from suggesting list prices to my clients.
 
-  By providing a clear picture of pricing trends within dynamic product filters a client can self-select, I can help answer the question indirectly by displaying a visualization of list price frequencies within product segments and associated statistics.
-Data Question
-What is the most competitive List Price Values for Books within specific format, genre, and page count buckets? 
+  By providing relevant statistics, data visuals, and filters for title and category specifications, I can help client publishers answer this question (...and increase client data literacy).
+  
+  
+#Data Question
+
+  What is the most competitive List Price Values for Books within specific format, genre, and page count buckets? 
 
 # Minimum Viable Product (MVP)
 
-  The app will display current frequency distributions of List Prices for front list books, selling at least 3 units YTD. Median and Mean values for each filtered selection will be displayed for greater interpretation of the distribution values. 
+  The app displays current frequency distributions of List Prices for front list books, selling at least 3 units YTD. Median value for each filtered selection will be displayed for greater interpretation of the distribution values. 
 
-  Toggles (bin count slider/drop down menu for filtering) will be present to specify product/market category, to display the most relevant list price value distributions for product comparison.
+  Toggles (bin count slider/drop down menu for filtering) are present to specify product/market category, displaying the most relevant list price value distributions for product comparison.
 
-  Observation Counts and Product/Category/Pricing Bucket labels will be included to ensure best interpretation of results. 
+  Secondary bar charts display the top 10 Subcategories by title count and the top 20 Subcategories by sales-per-title according to the filtered Category. 
 
-  Numbered walkthrough steps to ensure self-service functionality
+  User Notes provide direction and context for data interpretation. 
 
 
 
@@ -63,9 +62,10 @@ What is the most competitive List Price Values for Books within specific format,
 
 #  Data Sources
 
-  Point of Sales data pulled from Ingram Book Company
-Data includes book metadata – list price value, EAN (unique identifier), pub date, publisher, imprint, title, format, book category, page count, point of sales 2022, internal categorization, BISAC category (market categorization)
+  Original data pulled from Ingram Book Company and includes book metadata – list price value, EAN (unique identifier), pub date, publisher, imprint, title, format, book category, page count, point of sales 2022, internal categorization, BISAC category (market categorization)
+  
+  Data has been masked to eliminate unique identifiers, and the sales data has been randomized, so as to ensure privatization of data. This project is a demonstration of this data science apprentice's ability with RShiny, R Coding proficiencies, and an understanding of data visualization in the context of business analytics. 
 
 #  Known Issues and Challenges
 
-  Anticipated Challenges include wrangling data into readable format, bucketing list prices appropriately, displaying clean histograms with relevant distributions, functional toggling for filtering and bin control, the area chart for BISAC categorization
+  Anticipated Challenges include wrangling data into readable format, bucketing list prices appropriately, displaying clean histograms with relevant distributions, functional toggling for filtering and bin control, and privatization of source dataset.

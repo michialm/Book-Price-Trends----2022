@@ -8,7 +8,7 @@
 #
 
 dashboardPage(
-  dashboardHeader(title = "Book Prices 2022"),
+  dashboardHeader(title = "Book Pricing 2022"),
   dashboardSidebar(
     
     selectInput("Category", label = h5("Category"), 
@@ -57,7 +57,9 @@ dashboardPage(
                 label = h5("Number of bins:"),
                 min = 10,
                 max = 50,
-                value = 20)
+                value = 20),
+    
+    includeHTML("project_note.html")
     
   ),
   dashboardBody(

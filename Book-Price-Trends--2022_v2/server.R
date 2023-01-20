@@ -47,8 +47,9 @@ function(input, output) {
                color = "red",
                size = 4) +
       labs(x = 'List Price ($)', y = 'Frequency') +
-      labs(title = "2022 List Price Frequency Distribution") +
-      labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)")
+      labs(title = paste("2022 List Price Frequency Distribution:", input$Category)) +
+      labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
+      theme_gray(base_size = 18)
   })
   
   output$saturationplot <- renderPlot({
@@ -66,10 +67,11 @@ function(input, output) {
       ggplot(aes(x = reorder(BISAC_Level_2, -relative_frequency), y = relative_frequency)) +
       geom_bar(stat = "identity", color = 1, fill = 'skyblue') +
       labs(x = "Category", y = "Top 10 Frequency") +
-      labs(title = "Top 10 Subcategories by Title Count") +
-      labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
+      labs(title = paste("Top 10 Subcategories:", input$Category)) +
+      labs(caption = "Data: EAN Count; limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
       labs(legend.position = 'none') +
-      guides(x = guide_axis(angle = -65))
+      guides(x = guide_axis(angle = -65)) +
+      theme_gray(base_size = 14)
   })
   
   output$opportunityplot <- renderPlot({
@@ -88,9 +90,10 @@ function(input, output) {
                  y = reorder(BISAC_Level_2, sales_per_title))) +
       geom_col(color = 1, fill = 'skyblue') +
       labs(x = "Sales per Title", y = "Category") +
-      labs(title = "Top 20 Subcategories -- Sales per Title") +
-      labs(caption = "Data: limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
-      theme(legend.position='none')
+      labs(title = paste("Top 20 Subcategories:", input$Category)) +
+      labs(caption = "Data: sales-per-title; limited to 2022 pub dates w/ >= 3 reported sales (Ingram Book Company)") +
+      theme(legend.position='none') +
+      theme_gray(base_size = 14)
   })
   
 }

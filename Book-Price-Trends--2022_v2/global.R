@@ -9,5 +9,5 @@ library(shiny)
 library(shinydashboard)
 
 #Read in file and list objects
-prices <- readRDS("prices.RData")
+prices <- readRDS("prices2.RData")
 category_list <- unique(prices$BISAC_Level_1)
